@@ -1,0 +1,23 @@
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: path_route
+          uri: lb://TRANSACTION-API
+          predicates:
+            - Path=/transactions/**
+  application:
+    name: gateway
+server:
+  port: 8001
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:7001/eureka
+
+logging:
+  level:
+    root: debug
